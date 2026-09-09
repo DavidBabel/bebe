@@ -55,6 +55,10 @@
   }
   .cell{
     position:absolute;
+    left: var(--l);
+    top: var(--t);
+    width: var(--w);
+    height: var(--h);
     border:none;
     outline:none;
     background:transparent;
@@ -69,7 +73,7 @@
     /* la case fait déjà ~4% de large / ~8% de haut : la police suit la largeur du poster */
     font-size: clamp(11px, 3cqw, 34px);
     border-radius: 3px;
-    transition: background-color .18s ease, color .18s ease;
+    transition: background-color .18s ease, color .18s ease, left .18s ease, width .18s ease;
   }
   .cell.shaded{
     color:#2c2620;
@@ -111,6 +115,28 @@
   .reset-btn:active{
     transform: scale(0.97);
   }
+
+  /* Sur téléphone : on rogne 15% de l'image de chaque côté (gauche/droite)
+     pour que la grille remplisse mieux l'écran, sans zone de fond inutile. */
+  @media (max-width: 640px){
+    .poster{
+      overflow:hidden;
+      aspect-ratio: 1.4481;   /* (largeur image * 0.70) / hauteur image */
+    }
+    .poster-img{
+      position:absolute;
+      top:0;
+      left:50%;
+      width:auto;
+      height:100%;
+      max-width:none;
+      transform:translateX(-50%);
+    }
+    .cell{
+      left: calc((var(--l) - 15%) / 0.7);
+      width: calc(var(--w) / 0.7);
+    }
+  }
 </style>
 </head>
 <body>
@@ -121,58 +147,58 @@
       <img class="poster-img" src="baby_small.png" alt="Nos liens précieux - grille de mots croisés" draggable="false">
 
       <!-- Rangée 1 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r1c1" data-row="1" data-col="1" style="left:37.085%;top:39.343%;width:4.126%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c2" data-row="1" data-col="2" style="left:41.211%;top:39.343%;width:4.126%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c3" data-row="1" data-col="3" style="left:45.337%;top:39.343%;width:4.199%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c4" data-row="1" data-col="4" style="left:49.536%;top:39.343%;width:3.882%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c5" data-row="1" data-col="5" style="left:53.418%;top:39.343%;width:4.004%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c6" data-row="1" data-col="6" style="left:57.422%;top:39.343%;width:3.809%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c7" data-row="1" data-col="7" style="left:61.23%;top:39.343%;width:4.028%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c8" data-row="1" data-col="8" style="left:65.259%;top:39.343%;width:4.077%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c9" data-row="1" data-col="9" style="left:69.336%;top:39.343%;width:4.077%;height:8.03%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c10" data-row="1" data-col="10" style="left:73.413%;top:39.343%;width:3.979%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r1c1" data-row="1" data-col="1" style="--l:37.085%;--t:39.343%;--w:4.126%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c2" data-row="1" data-col="2" style="--l:41.211%;--t:39.343%;--w:4.126%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c3" data-row="1" data-col="3" style="--l:45.337%;--t:39.343%;--w:4.199%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c4" data-row="1" data-col="4" style="--l:49.536%;--t:39.343%;--w:3.882%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c5" data-row="1" data-col="5" style="--l:53.418%;--t:39.343%;--w:4.004%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c6" data-row="1" data-col="6" style="--l:57.422%;--t:39.343%;--w:3.809%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c7" data-row="1" data-col="7" style="--l:61.23%;--t:39.343%;--w:4.028%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c8" data-row="1" data-col="8" style="--l:65.259%;--t:39.343%;--w:4.077%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c9" data-row="1" data-col="9" style="--l:69.336%;--t:39.343%;--w:4.077%;--h:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c10" data-row="1" data-col="10" style="--l:73.413%;--t:39.343%;--w:3.979%;--h:8.03%;">
 
       <!-- Rangée 2 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c1" data-row="2" data-col="1" style="left:20.972%;top:47.374%;width:4.028%;height:8.131%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c2" data-row="2" data-col="2" style="left:25.0%;top:47.374%;width:4.102%;height:8.131%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c3" data-row="2" data-col="3" style="left:29.102%;top:47.374%;width:3.882%;height:8.131%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c4" data-row="2" data-col="4" style="left:32.983%;top:47.374%;width:4.028%;height:8.131%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r2c5" data-row="2" data-col="5" style="left:37.012%;top:47.374%;width:4.199%;height:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c1" data-row="2" data-col="1" style="--l:20.972%;--t:47.374%;--w:4.028%;--h:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c2" data-row="2" data-col="2" style="--l:25.0%;--t:47.374%;--w:4.102%;--h:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c3" data-row="2" data-col="3" style="--l:29.102%;--t:47.374%;--w:3.882%;--h:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c4" data-row="2" data-col="4" style="--l:32.983%;--t:47.374%;--w:4.028%;--h:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r2c5" data-row="2" data-col="5" style="--l:37.012%;--t:47.374%;--w:4.199%;--h:8.131%;">
 
       <!-- Rangée 3 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c1" data-row="3" data-col="1" style="left:29.175%;top:55.505%;width:3.809%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c2" data-row="3" data-col="2" style="left:32.983%;top:55.505%;width:4.028%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r3c3" data-row="3" data-col="3" style="left:37.012%;top:55.505%;width:4.199%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c4" data-row="3" data-col="4" style="left:41.211%;top:55.505%;width:4.126%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c5" data-row="3" data-col="5" style="left:45.337%;top:55.505%;width:4.199%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c1" data-row="3" data-col="1" style="--l:29.175%;--t:55.505%;--w:3.809%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c2" data-row="3" data-col="2" style="--l:32.983%;--t:55.505%;--w:4.028%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r3c3" data-row="3" data-col="3" style="--l:37.012%;--t:55.505%;--w:4.199%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c4" data-row="3" data-col="4" style="--l:41.211%;--t:55.505%;--w:4.126%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c5" data-row="3" data-col="5" style="--l:45.337%;--t:55.505%;--w:4.199%;--h:8.182%;">
 
       <!-- Rangée 4 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c1" data-row="4" data-col="1" style="left:29.175%;top:63.687%;width:3.809%;height:8.081%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c2" data-row="4" data-col="2" style="left:32.983%;top:63.687%;width:4.028%;height:8.081%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r4c3" data-row="4" data-col="3" style="left:37.012%;top:63.687%;width:4.199%;height:8.081%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c4" data-row="4" data-col="4" style="left:41.211%;top:63.687%;width:4.126%;height:8.081%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c5" data-row="4" data-col="5" style="left:45.337%;top:63.687%;width:4.199%;height:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c1" data-row="4" data-col="1" style="--l:29.175%;--t:63.687%;--w:3.809%;--h:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c2" data-row="4" data-col="2" style="--l:32.983%;--t:63.687%;--w:4.028%;--h:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r4c3" data-row="4" data-col="3" style="--l:37.012%;--t:63.687%;--w:4.199%;--h:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c4" data-row="4" data-col="4" style="--l:41.211%;--t:63.687%;--w:4.126%;--h:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c5" data-row="4" data-col="5" style="--l:45.337%;--t:63.687%;--w:4.199%;--h:8.081%;">
 
       <!-- Rangée 5 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c1" data-row="5" data-col="1" style="left:25.049%;top:71.768%;width:4.053%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c2" data-row="5" data-col="2" style="left:29.102%;top:71.768%;width:3.882%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c3" data-row="5" data-col="3" style="left:32.983%;top:71.768%;width:4.028%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r5c4" data-row="5" data-col="4" style="left:37.012%;top:71.768%;width:4.199%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c5" data-row="5" data-col="5" style="left:41.211%;top:71.768%;width:4.126%;height:8.182%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c6" data-row="5" data-col="6" style="left:45.337%;top:71.768%;width:4.199%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c1" data-row="5" data-col="1" style="--l:25.049%;--t:71.768%;--w:4.053%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c2" data-row="5" data-col="2" style="--l:29.102%;--t:71.768%;--w:3.882%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c3" data-row="5" data-col="3" style="--l:32.983%;--t:71.768%;--w:4.028%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r5c4" data-row="5" data-col="4" style="--l:37.012%;--t:71.768%;--w:4.199%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c5" data-row="5" data-col="5" style="--l:41.211%;--t:71.768%;--w:4.126%;--h:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c6" data-row="5" data-col="6" style="--l:45.337%;--t:71.768%;--w:4.199%;--h:8.182%;">
 
       <!-- Rangée 6 -->
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c1" data-row="6" data-col="1" style="left:29.175%;top:79.949%;width:3.809%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c2" data-row="6" data-col="2" style="left:32.983%;top:79.949%;width:4.028%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r6c3" data-row="6" data-col="3" style="left:37.012%;top:79.949%;width:4.199%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c4" data-row="6" data-col="4" style="left:41.211%;top:79.949%;width:4.004%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c5" data-row="6" data-col="5" style="left:45.215%;top:79.949%;width:4.199%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c6" data-row="6" data-col="6" style="left:49.414%;top:79.949%;width:3.906%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c7" data-row="6" data-col="7" style="left:53.32%;top:79.949%;width:3.955%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c8" data-row="6" data-col="8" style="left:57.275%;top:79.949%;width:3.857%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c9" data-row="6" data-col="9" style="left:61.133%;top:79.949%;width:3.979%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c10" data-row="6" data-col="10" style="left:65.112%;top:79.949%;width:4.077%;height:8.232%;">
-      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c11" data-row="6" data-col="11" style="left:69.189%;top:79.949%;width:4.077%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c1" data-row="6" data-col="1" style="--l:29.175%;--t:79.949%;--w:3.809%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c2" data-row="6" data-col="2" style="--l:32.983%;--t:79.949%;--w:4.028%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r6c3" data-row="6" data-col="3" style="--l:37.012%;--t:79.949%;--w:4.199%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c4" data-row="6" data-col="4" style="--l:41.211%;--t:79.949%;--w:4.004%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c5" data-row="6" data-col="5" style="--l:45.215%;--t:79.949%;--w:4.199%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c6" data-row="6" data-col="6" style="--l:49.414%;--t:79.949%;--w:3.906%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c7" data-row="6" data-col="7" style="--l:53.32%;--t:79.949%;--w:3.955%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c8" data-row="6" data-col="8" style="--l:57.275%;--t:79.949%;--w:3.857%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c9" data-row="6" data-col="9" style="--l:61.133%;--t:79.949%;--w:3.979%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c10" data-row="6" data-col="10" style="--l:65.112%;--t:79.949%;--w:4.077%;--h:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c11" data-row="6" data-col="11" style="--l:69.189%;--t:79.949%;--w:4.077%;--h:8.232%;">
 
     </div>
   </div>
