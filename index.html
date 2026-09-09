@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Nos liens précieux</title>
+<style>
+  :root{
+    --ink:#2c2620;
+    --focus-bg: rgba(196, 168, 100, 0.22);
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0;
+    padding:0;
+    background:#3a3733;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    padding: 18px 0 30px;
+  }
+  .scroll-wrap{
+    width:100%;
+    max-width:1100px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 4px;
+  }
+  .poster{
+    position:relative;
+    width:100%;
+    min-width:720px;      /* évite que la grille devienne illisible sur très petit écran : on scrolle horizontalement à la place */
+    line-height:0;
+    container-type: inline-size;
+  }
+  .poster-img{
+    display:block;
+    width:100%;
+    height:auto;
+    user-select:none;
+    -webkit-user-drag:none;
+    pointer-events:none;
+  }
+  .cell{
+    position:absolute;
+    border:none;
+    outline:none;
+    background:transparent;
+    text-align:center;
+    text-transform:uppercase;
+    font-family: "Courier New", "Consolas", "SFMono-Regular", ui-monospace, monospace;
+    font-weight:700;
+    color:var(--ink);
+    caret-color:var(--ink);
+    padding:0;
+    margin:0;
+    /* la case fait déjà ~4% de large / ~8% de haut : la police suit la largeur du poster */
+    font-size: 3cqw;
+    border-radius: 2px;
+  }
+  .cell.shaded{
+    color:#2c2620;
+  }
+  .cell:focus{
+    background: var(--focus-bg);
+  }
+  .hint{
+    max-width:640px;
+    text-align:center;
+    color:#cfcac0;
+    font-size:13px;
+    line-height:1.5;
+    margin: 16px 14px 4px;
+  }
+  .reset-btn{
+    margin-top:6px;
+    background:none;
+    border:1px solid #6b665d;
+    color:#cfcac0;
+    font-size:12px;
+    padding:6px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .reset-btn:hover{
+    background:#4a463f;
+  }
+  .reset-btn:active{
+    transform: scale(0.97);
+  }
+</style>
+</head>
+<body>
+
+  <div class="scroll-wrap">
+    <div class="poster" id="poster">
+      <img class="poster-img" src="baby_small.png" alt="Nos liens précieux - grille de mots croisés" draggable="false">
+
+      <!-- Rangée 1 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r1c1" data-row="1" data-col="1" style="left:37.085%;top:39.343%;width:4.126%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c2" data-row="1" data-col="2" style="left:41.211%;top:39.343%;width:4.126%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c3" data-row="1" data-col="3" style="left:45.337%;top:39.343%;width:4.199%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c4" data-row="1" data-col="4" style="left:49.536%;top:39.343%;width:3.882%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c5" data-row="1" data-col="5" style="left:53.418%;top:39.343%;width:4.004%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c6" data-row="1" data-col="6" style="left:57.422%;top:39.343%;width:3.809%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c7" data-row="1" data-col="7" style="left:61.23%;top:39.343%;width:4.028%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c8" data-row="1" data-col="8" style="left:65.259%;top:39.343%;width:4.077%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c9" data-row="1" data-col="9" style="left:69.336%;top:39.343%;width:4.077%;height:8.03%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r1c10" data-row="1" data-col="10" style="left:73.413%;top:39.343%;width:3.979%;height:8.03%;">
+
+      <!-- Rangée 2 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c1" data-row="2" data-col="1" style="left:20.972%;top:47.374%;width:4.028%;height:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c2" data-row="2" data-col="2" style="left:25.0%;top:47.374%;width:4.102%;height:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c3" data-row="2" data-col="3" style="left:29.102%;top:47.374%;width:3.882%;height:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r2c4" data-row="2" data-col="4" style="left:32.983%;top:47.374%;width:4.028%;height:8.131%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r2c5" data-row="2" data-col="5" style="left:37.012%;top:47.374%;width:4.199%;height:8.131%;">
+
+      <!-- Rangée 3 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c1" data-row="3" data-col="1" style="left:29.175%;top:55.505%;width:3.809%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c2" data-row="3" data-col="2" style="left:32.983%;top:55.505%;width:4.028%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r3c3" data-row="3" data-col="3" style="left:37.012%;top:55.505%;width:4.199%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c4" data-row="3" data-col="4" style="left:41.211%;top:55.505%;width:4.126%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r3c5" data-row="3" data-col="5" style="left:45.337%;top:55.505%;width:4.199%;height:8.182%;">
+
+      <!-- Rangée 4 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c1" data-row="4" data-col="1" style="left:29.175%;top:63.687%;width:3.809%;height:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c2" data-row="4" data-col="2" style="left:32.983%;top:63.687%;width:4.028%;height:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r4c3" data-row="4" data-col="3" style="left:37.012%;top:63.687%;width:4.199%;height:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c4" data-row="4" data-col="4" style="left:41.211%;top:63.687%;width:4.126%;height:8.081%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r4c5" data-row="4" data-col="5" style="left:45.337%;top:63.687%;width:4.199%;height:8.081%;">
+
+      <!-- Rangée 5 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c1" data-row="5" data-col="1" style="left:25.049%;top:71.768%;width:4.053%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c2" data-row="5" data-col="2" style="left:29.102%;top:71.768%;width:3.882%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c3" data-row="5" data-col="3" style="left:32.983%;top:71.768%;width:4.028%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r5c4" data-row="5" data-col="4" style="left:37.012%;top:71.768%;width:4.199%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c5" data-row="5" data-col="5" style="left:41.211%;top:71.768%;width:4.126%;height:8.182%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r5c6" data-row="5" data-col="6" style="left:45.337%;top:71.768%;width:4.199%;height:8.182%;">
+
+      <!-- Rangée 6 -->
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c1" data-row="6" data-col="1" style="left:29.175%;top:79.949%;width:3.809%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c2" data-row="6" data-col="2" style="left:32.983%;top:79.949%;width:4.028%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell shaded" id="r6c3" data-row="6" data-col="3" style="left:37.012%;top:79.949%;width:4.199%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c4" data-row="6" data-col="4" style="left:41.211%;top:79.949%;width:4.004%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c5" data-row="6" data-col="5" style="left:45.215%;top:79.949%;width:4.199%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c6" data-row="6" data-col="6" style="left:49.414%;top:79.949%;width:3.906%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c7" data-row="6" data-col="7" style="left:53.32%;top:79.949%;width:3.955%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c8" data-row="6" data-col="8" style="left:57.275%;top:79.949%;width:3.857%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c9" data-row="6" data-col="9" style="left:61.133%;top:79.949%;width:3.979%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c10" data-row="6" data-col="10" style="left:65.112%;top:79.949%;width:4.077%;height:8.232%;">
+      <input type="text" inputmode="text" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" class="cell" id="r6c11" data-row="6" data-col="11" style="left:69.189%;top:79.949%;width:4.077%;height:8.232%;">
+
+    </div>
+  </div>
+
+  <p class="hint">Touchez une case pour écrire une lettre. Les réponses sont sauvegardées automatiquement sur cet appareil.</p>
+  <button class="reset-btn" id="resetBtn" type="button">Effacer mes réponses</button>
+
+<script>
+(function(){
+  var STORAGE_KEY = "nosLiensPrecieux_answers";
+  var poster = document.getElementById("poster");
+  var cells = Array.prototype.slice.call(poster.querySelectorAll("input.cell"));
+
+  // groupe les cases par rangée, dans l'ordre des colonnes, pour la navigation au clavier
+  var rows = {};
+  cells.forEach(function(input){
+    var r = input.dataset.row;
+    if(!rows[r]) rows[r] = [];
+    rows[r].push(input);
+  });
+
+  function loadAnswers(){
+    var saved = {};
+    try{
+      saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    }catch(e){ saved = {}; }
+    cells.forEach(function(input){
+      if(saved[input.id]) input.value = saved[input.id];
+    });
+  }
+
+  function saveAnswer(input){
+    var saved = {};
+    try{
+      saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    }catch(e){ saved = {}; }
+    if(input.value){
+      saved[input.id] = input.value;
+    }else{
+      delete saved[input.id];
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  }
+
+  function focusInput(input){
+    if(!input) return;
+    input.focus();
+    // sélectionne le contenu pour pouvoir retaper directement par-dessus
+    try{ input.setSelectionRange(0, 1); }catch(e){}
+  }
+
+  cells.forEach(function(input){
+    var rowList = rows[input.dataset.row];
+    var idx = rowList.indexOf(input);
+
+    input.addEventListener("input", function(){
+      input.value = input.value.slice(-1).toUpperCase();
+      saveAnswer(input);
+      if(input.value && idx < rowList.length - 1){
+        focusInput(rowList[idx + 1]);
+      }
+    });
+
+    input.addEventListener("keydown", function(e){
+      if(e.key === "Backspace" && !input.value && idx > 0){
+        e.preventDefault();
+        focusInput(rowList[idx - 1]);
+      }else if(e.key === "ArrowRight" && idx < rowList.length - 1){
+        e.preventDefault();
+        focusInput(rowList[idx + 1]);
+      }else if(e.key === "ArrowLeft" && idx > 0){
+        e.preventDefault();
+        focusInput(rowList[idx - 1]);
+      }
+    });
+
+    input.addEventListener("focus", function(){
+      try{ input.setSelectionRange(0, 1); }catch(e){}
+    });
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    if(!confirm("Effacer toutes les réponses saisies ?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    cells.forEach(function(input){ input.value = ""; });
+  });
+
+  loadAnswers();
+})();
+</script>
+
+</body>
+</html>
