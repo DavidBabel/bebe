@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>Nos liens précieux</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%91%B6%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --ink:#2c2620;
     --focus-bg: rgba(196, 168, 100, 0.22);
+    --ok-bg: rgba(76, 175, 80, 0.32);
+    --ok-fg: #1b5e20;
+    --ko-bg: rgba(229, 57, 53, 0.28);
+    --ko-fg: #b71c1c;
   }
   *{ box-sizing:border-box; }
   html,body{
@@ -21,19 +26,22 @@
     flex-direction:column;
     align-items:center;
     min-height:100vh;
-    padding: 18px 0 30px;
+    padding: 18px 12px 30px;
+  }
+  .page-wrap{
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
   }
   .scroll-wrap{
     width:100%;
-    max-width:1100px;
-    overflow-x:auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 4px;
   }
   .poster{
     position:relative;
     width:100%;
-    min-width:720px;      /* évite que la grille devienne illisible sur très petit écran : on scrolle horizontalement à la place */
     line-height:0;
     container-type: inline-size;
   }
@@ -59,8 +67,9 @@
     padding:0;
     margin:0;
     /* la case fait déjà ~4% de large / ~8% de haut : la police suit la largeur du poster */
-    font-size: 3cqw;
-    border-radius: 2px;
+    font-size: clamp(11px, 3cqw, 34px);
+    border-radius: 3px;
+    transition: background-color .18s ease, color .18s ease;
   }
   .cell.shaded{
     color:#2c2620;
@@ -68,13 +77,22 @@
   .cell:focus{
     background: var(--focus-bg);
   }
+  .cell.correct{
+    background: var(--ok-bg);
+    color: var(--ok-fg);
+  }
+  .cell.incorrect{
+    background: var(--ko-bg);
+    color: var(--ko-fg);
+  }
   .hint{
+    width:100%;
     max-width:640px;
     text-align:center;
     color:#cfcac0;
     font-size:13px;
     line-height:1.5;
-    margin: 16px 14px 4px;
+    margin: 16px 0 4px;
   }
   .reset-btn{
     margin-top:6px;
@@ -97,6 +115,7 @@
 </head>
 <body>
 
+<div class="page-wrap">
   <div class="scroll-wrap">
     <div class="poster" id="poster">
       <img class="poster-img" src="baby_small.png" alt="Nos liens précieux - grille de mots croisés" draggable="false">
@@ -158,14 +177,33 @@
     </div>
   </div>
 
-  <p class="hint">Touchez une case pour écrire une lettre. Les réponses sont sauvegardées automatiquement sur cet appareil.</p>
+  <p class="hint">Touchez une case pour écrire une lettre. Le mot vertical se colore en vert si la lettre est correcte, en rouge sinon. Les réponses sont sauvegardées automatiquement sur cet appareil.</p>
   <button class="reset-btn" id="resetBtn" type="button">Effacer mes réponses</button>
+</div>
 
 <script>
 (function(){
   var STORAGE_KEY = "nosLiensPrecieux_answers";
   var poster = document.getElementById("poster");
   var cells = Array.prototype.slice.call(poster.querySelectorAll("input.cell"));
+
+  // mot vertical à valider : OLIVIA, réparti sur les cases grisées de haut en bas
+  var VERTICAL_WORD = ["O","L","I","V","I","A"];
+  var verticalIds = ["r1c1","r2c5","r3c3","r4c3","r5c4","r6c3"];
+  var verticalAnswer = {};
+  verticalIds.forEach(function(id, i){ verticalAnswer[id] = VERTICAL_WORD[i]; });
+
+  function checkVertical(input){
+    var expected = verticalAnswer[input.id];
+    if(expected === undefined) return;
+    input.classList.remove("correct", "incorrect");
+    if(!input.value) return;
+    if(input.value.toUpperCase() === expected){
+      input.classList.add("correct");
+    }else{
+      input.classList.add("incorrect");
+    }
+  }
 
   // groupe les cases par rangée, dans l'ordre des colonnes, pour la navigation au clavier
   var rows = {};
@@ -182,6 +220,7 @@
     }catch(e){ saved = {}; }
     cells.forEach(function(input){
       if(saved[input.id]) input.value = saved[input.id];
+      checkVertical(input);
     });
   }
 
@@ -212,6 +251,7 @@
     input.addEventListener("input", function(){
       input.value = input.value.slice(-1).toUpperCase();
       saveAnswer(input);
+      checkVertical(input);
       if(input.value && idx < rowList.length - 1){
         focusInput(rowList[idx + 1]);
       }
@@ -238,7 +278,10 @@
   document.getElementById("resetBtn").addEventListener("click", function(){
     if(!confirm("Effacer toutes les réponses saisies ?")) return;
     localStorage.removeItem(STORAGE_KEY);
-    cells.forEach(function(input){ input.value = ""; });
+    cells.forEach(function(input){
+      input.value = "";
+      input.classList.remove("correct", "incorrect");
+    });
   });
 
   loadAnswers();
